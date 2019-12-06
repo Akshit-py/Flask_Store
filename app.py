@@ -13,9 +13,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False #this turns off flasks sql_
 app.secret_key='aks'
 api=Api(app)
 
-@app.before_first_request
-def create_tables():
-    db.create_all()
+
 
 jwt=JWT(app, authenticate, identity)
 

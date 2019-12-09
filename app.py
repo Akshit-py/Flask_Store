@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, request
 from flask_restful import Resource, Api, reqparse
 from flask_jwt import JWT, jwt_required
@@ -8,7 +10,7 @@ from resources.item import Item, Items_list
 from resources.store import Store, StoreList
 
 app=Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL','sqlite:///data.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False #this turns off flasks sql_alchemy_modification tracker bcz we already have the same thing in SQLAlchemy library so we dont need flask lib to do the same.
 app.secret_key='aks'
 api=Api(app)
